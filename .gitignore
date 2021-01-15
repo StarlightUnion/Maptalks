@@ -1,0 +1,10 @@
+.DS_STORE
+node_modules
+*~
+*.log*
+package-lock.json
+dist
+.npmignore
+.vscode
+.idea
+.history
