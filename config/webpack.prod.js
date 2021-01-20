@@ -164,10 +164,10 @@ module.exports = merge(base_webpack_config, {
       append: false
     }),
 
-    // new FaviconsWebpackPlugin({
-    //   logo: path.resolve(__dirname, "../assets/logo.png"),
-    //   prefix: 'icons/'
-    // }),
+    new FaviconsWebpackPlugin({
+      logo: path.resolve(__dirname, "../assets/logo.png"),
+      prefix: 'icons/'
+    }),
 
     new InlineSourcePlugin(),
 

@@ -177,17 +177,12 @@ module.exports = (merge(base_webpack_config, {
       append: false,
     }),
 
-    // new FaviconsWebpackPlugin({
-    //   logo: path.resolve(__dirname, "../assets/logo.png"),
-    //   prefix: 'icons/'
-    // }),
+    new FaviconsWebpackPlugin({
+      logo: path.resolve(__dirname, "../assets/logo.png"),
+      prefix: 'icons/'
+    }),
 
     new webpack.HotModuleReplacementPlugin(),
-
-    // new ServiceWorkerWebpackPlugin({
-    //   entry: path.join(__dirname, "../src/sw.js"),
-    // })
-    // new SizePlugin(),
 
     new MomentLocalesPlugin({
       localesToKeep: ["zh-cn"],
@@ -202,12 +197,6 @@ module.exports = (merge(base_webpack_config, {
     hot: true,
     https: false,
     noInfo: true,
-    open: true,
-    proxy: {
-      '/api': {
-        target: 'http://183.129.204.238:855',
-        changeOrigin: true
-      }
-    }
+    open: true
   }
 }))
