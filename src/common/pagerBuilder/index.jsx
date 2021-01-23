@@ -30,10 +30,13 @@ const PageBuilder = (Childs) => {
 
       return (
         <>
-          <header className="page-header">
-            <img src={require(`../../../assets/${route.titlePath}`)} />
-          </header>
-          <Childs {...this.props} />
+          <div id="map"></div>
+          <div className="mian">
+            <header className="page-header">
+              <img src={require(`../../../assets/${route.titlePath}`)} />
+            </header>
+            <Childs {...this.props} />
+          </div>
         </>
       );
     }

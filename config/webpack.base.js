@@ -29,6 +29,12 @@ module.exports = merge({}, {
           priority: 80,
           reuseExistingChunk: true
         },
+        map: {
+          test: path.resolve(__dirname, "../libs"),
+          name: "map",
+          priority: 0,
+          reuseExistingChunk: true
+        },
         vendor: {
           test: path.resolve(__dirname, "../node_modules"),
           name: "vendor",

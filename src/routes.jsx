@@ -9,6 +9,7 @@ function Routes(props) {
 
   if (Array.isArray(routes) && routes.length) {
     return (
+      // 二级目录配置
       <BrowserRouter basename="/screen">
         <Switch>
           {/* 路由生成 */}

@@ -1,12 +1,11 @@
 import React from "react";
+import PageBuilder from "../../../common/pagerBuilder";
 import "./index.less";
 
-class HomePage extends React.Component {
-  render() {
-    return (
-      <div>{ "HomePage" }</div>
-    );
-  }
-}
+const HomePage = PageBuilder(() => {
+  return (
+    <main>{ "HomePage" }</main>
+  );
+});
 
 export { HomePage };
