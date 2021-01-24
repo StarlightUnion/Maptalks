@@ -2,6 +2,7 @@ import React from "react";
 import * as PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./index.less";
+import { MapVisual } from "../mapVisual";
 
 const mapStateToProps = (state) => {
   return { globalConfig: state.globalConfig };
@@ -22,7 +23,6 @@ const PageBuilder = (Childs) => {
     componentDidMount() {
       const { route, globalConfig } = this.props;
       document.title = `${route.label} | ${globalConfig.projectName}`;
-      console.info(globalConfig);
     }
 
     render() {
@@ -30,8 +30,8 @@ const PageBuilder = (Childs) => {
 
       return (
         <>
-          <div id="map"></div>
-          <div className="mian">
+          <MapVisual />
+          <div className="main">
             <header className="page-header">
               <img src={require(`../../../assets/${route.titlePath}`)} />
             </header>

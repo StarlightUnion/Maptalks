@@ -94,6 +94,12 @@ module.exports = merge(base_webpack_config, {
         ]
       },
       {
+        test: /\.css$/,
+        use: {
+          loader: "css-loader"
+        }
+      },
+      {
         test: /\.html$/,
         use: {
           loader: "html-loader"
