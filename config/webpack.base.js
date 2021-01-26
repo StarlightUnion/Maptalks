@@ -40,6 +40,9 @@ module.exports = merge({}, {
   },
 
   resolve: {
-    extensions: [".wasm", ".ts", ".js", ".tsx", ".jsx", ".json"]
+    extensions: [".wasm", ".ts", ".js", ".tsx", ".jsx", ".json"],
+    alias: {
+      "#": path.resolve(__dirname, "../libs")
+    }
   }
 });

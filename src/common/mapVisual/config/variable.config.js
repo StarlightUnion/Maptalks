@@ -14,7 +14,6 @@ const variableConfig = {
   gwTileLayer: null, //esri管网服务
   buildLayer: null, //建筑
   swipelayer: null, //卷帘图层
-  resolutions: getResolutions(),
 
   monitorCar: null, //车辆监控
   monitorPeople: null, //人员监控
@@ -33,14 +32,6 @@ const variableConfig = {
   monitorIw: null, //智慧井盖
   monitorPs: null, //泵站
   networkFault: null //管网缺陷
-}
-
-function getResolutions(res = []) {
-  const d = 2 * 6378137 * Math.PI;
-  for (var i = 0; i < 25; i++) {
-    res.push(d / (256 * Math.pow(2, i)));
-  }
-  return res;
 }
 
 export default variableConfig;

@@ -1,4 +1,5 @@
-import * as maptalks from "maptalks";
+// import * as maptalks from "maptalks";
+import * as maptalks from "#/maptalks/maptalks.es";
 import { ArcGISTileLayer } from "maptalks.arcgistilelayer";
 import { WMTSTileLayer } from "maptalks.wmts";
 import "maptalks/dist/maptalks.css";
@@ -81,6 +82,13 @@ const layerConfig = {
     forceRenderOnMoving: true,
     forceRenderOnRotating: true,
     forceRenderOnZooming: true,
+  }),
+  // 行政边界
+  v_Layer: new maptalks.VectorLayer('v', {
+    minZoom: 10,
+    maxZoom: 15,
+    forceRenderOnZooming: true,
+    enableAltitude: true
   })
 };
 

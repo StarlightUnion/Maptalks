@@ -15,6 +15,7 @@ const mapConfig = {
     bearing: -6.8, //方位
     fog: true, //是否开启雾化
     spatialReference: "EPSG:3857", //空间参考(EPSG) 默认为'EPSG:3857'， 投影坐标系配置为：identity
+    resolutions: getResolutions(),
     BasicLayerConfig: { //底图配置 仅支持“切片方式”加载
       DxtConfig: {
         index: 0, //控件排列顺序 非叠加顺序 标注不显示控件  随相应图层进行联动
@@ -90,6 +91,14 @@ const mapConfig = {
       }
     }
   }
+}
+
+function getResolutions(res = []) {
+  const d = 2 * 6378137 * Math.PI;
+  for (var i = 0; i < 25; i++) {
+    res.push(d / (256 * Math.pow(2, i)));
+  }
+  return res;
 }
 
 export default mapConfig;

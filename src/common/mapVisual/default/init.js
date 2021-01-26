@@ -1,4 +1,6 @@
-import * as maptalks from "maptalks";
+// import * as maptalks from "maptalks";
+import * as maptalks from "#/maptalks/maptalks.es";
+import { Hash } from "#/maptalks.plugin/maptalks.hash.es";
 import mapConfig from "../config/map.config";
 import layerConfig from "../config/layer.config";
 import variableConfig from "../config/variable.config";
@@ -6,17 +8,6 @@ import variableConfig from "../config/variable.config";
 // 初始化地图
 export const initMapVisual = () => {
   const _layerConfig = Object.values(layerConfig);
-  _layerConfig.push(new maptalks.VectorLayer('v', {
-    minZoom: 10,
-    maxZoom: 15,
-    forceRenderOnZooming: true,
-    enableAltitude: true
-  }));
-
-  console.log(_layerConfig);
-
-  variableConfig.swipelayer = layerConfig.Tdt_DXT_Layer;
-
   const {
     center,
     zoom,
@@ -25,8 +16,11 @@ export const initMapVisual = () => {
     maxZoom,
     bearing,
     fog,
-    spatialReference
+    spatialReference,
+    resolutions
   } = mapConfig.Map;
+
+  variableConfig.swipelayer = layerConfig.Tdt_DXT_Layer;
 
   const map = new maptalks.Map("map", {
     center: center,
@@ -38,11 +32,11 @@ export const initMapVisual = () => {
     fog: fog,
     centerCross: false,
     doubleClickZoom: false, //false,
-    // "seamlessZoom": true, //是否使用无缝缩放模式
+    seamlessZoom: true, //是否使用无缝缩放模式
     attribution: false,
     spatialReference: {
       projection: spatialReference,
-      resolutions: variableConfig.resolutions,
+      resolutions: resolutions,
       fullExtent: { // map's full extent
         top: 6378137 * Math.PI,
         left: -6378137 * Math.PI,
@@ -53,4 +47,7 @@ export const initMapVisual = () => {
     baseLayer: layerConfig.Tdt_YXT_Layer,
     layers: _layerConfig,
   });
+
+  // Hash
+  new Hash(map);
 }

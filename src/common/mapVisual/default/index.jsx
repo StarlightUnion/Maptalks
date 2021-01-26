@@ -8,11 +8,7 @@ const MapVisual = () => {
     initMapVisual();
   });
 
-  return (
-    <>
-      <div id="map"></div>
-    </>
-  );
+  return <div id="map"></div>;
 };
 
 export default MapVisual;
