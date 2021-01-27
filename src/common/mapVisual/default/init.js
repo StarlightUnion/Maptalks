@@ -1,6 +1,5 @@
 // import * as maptalks from "maptalks";
 import * as maptalks from "#/maptalks/maptalks.es";
-import { Hash } from "#/maptalks.plugin/maptalks.hash.es";
 import mapConfig from "../config/map.config";
 import layerConfig from "../config/layer.config";
 import variableConfig from "../config/variable.config";
@@ -36,18 +35,15 @@ export const initMapVisual = () => {
     attribution: false,
     spatialReference: {
       projection: spatialReference,
-      resolutions: resolutions,
-      fullExtent: { // map's full extent
-        top: 6378137 * Math.PI,
-        left: -6378137 * Math.PI,
-        bottom: -6378137 * Math.PI,
-        right: 6378137 * Math.PI
-      }
+      // resolutions: resolutions,
+      // fullExtent: { // map's full extent
+      //   top: 6378137 * Math.PI,
+      //   left: -6378137 * Math.PI,
+      //   bottom: -6378137 * Math.PI,
+      //   right: 6378137 * Math.PI
+      // }
     },
     baseLayer: layerConfig.Tdt_YXT_Layer,
     layers: _layerConfig,
   });
-
-  // Hash
-  new Hash(map);
 }
