@@ -1,18 +1,18 @@
 import React from "react";
 import * as PropTypes from "prop-types";
 import { connect } from "react-redux";
-import "./index.less";
 import { MapVisual } from "../mapVisual";
+import "./index.less";
 
 const mapStateToProps = (state) => {
-  return { globalConfig: state.globalConfig };
+  return { config: state.config };
 };
 
-// 创建大屏页面内容
+// 创建页面内容
 const PageBuilder = (Childs) => {
   return connect(mapStateToProps)(class extends React.Component {
     static propTypes = {
-      globalConfig: PropTypes.object.isRequired,
+      config: PropTypes.object.isRequired,
       route: PropTypes.object.isRequired
     }
 
@@ -21,20 +21,20 @@ const PageBuilder = (Childs) => {
     }
 
     componentDidMount() {
-      const { route, globalConfig } = this.props;
-      document.title = `${route.label} | ${globalConfig.projectName}`;
+      const { route, config } = this.props;
+      document.title = `${route.label} | ${config.projectName}`;
     }
 
     render() {
-      const { route } = this.props;
+      // const { route } = this.props;
 
       return (
         <>
           <MapVisual />
           <div className="main">
-            <header className="page-header">
+            {/* <header className="page-header">
               <img src={require(`../../../assets/${route.titlePath}`)} />
-            </header>
+            </header> */}
             <Childs {...this.props} />
           </div>
         </>

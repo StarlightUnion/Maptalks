@@ -5,8 +5,8 @@ function reducer(state: any, action: ACTION) {
     case ACTION_TYPE.CONFIG:
       return { ...state, config: action["config"] };
 
-    case ACTION_TYPE.GLOBALCONFIG:
-      return { ...state, globalConfig: action["globalConfig"] };
+    case ACTION_TYPE.MAP:
+      return { ...state, map: action["map"] };
 
     default:
       break;

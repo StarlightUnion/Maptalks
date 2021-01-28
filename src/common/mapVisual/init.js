@@ -1,8 +1,9 @@
-// import * as maptalks from "maptalks";
-import * as maptalks from "#/maptalks/maptalks.es";
-import mapConfig from "../config/map.config";
-import layerConfig from "../config/layer.config";
-import variableConfig from "../config/variable.config";
+import * as maptalks from "maptalks";
+// import * as maptalks from "#/maptalks/maptalks.es";// 本地文件
+import mapConfig from "./config/map.config";
+import layerConfig from "./config/layer.config";
+import variableConfig from "./config/variable.config";
+
 
 // 初始化地图
 export const initMapVisual = () => {
@@ -35,15 +36,21 @@ export const initMapVisual = () => {
     attribution: false,
     spatialReference: {
       projection: spatialReference,
-      // resolutions: resolutions,
-      // fullExtent: { // map's full extent
-      //   top: 6378137 * Math.PI,
-      //   left: -6378137 * Math.PI,
-      //   bottom: -6378137 * Math.PI,
-      //   right: 6378137 * Math.PI
-      // }
+      resolutions: resolutions
     },
     baseLayer: layerConfig.Tdt_YXT_Layer,
     layers: _layerConfig,
   });
-}
+
+  return map;
+};
+
+// 初始化插件
+export const initPlugins = (map) => {
+  //比例尺
+  // map.addControl(getScale());
+  //缩放控件
+  // map.addControl(getZoomTools());
+  //指北针
+  // map.addCompassControl();
+};

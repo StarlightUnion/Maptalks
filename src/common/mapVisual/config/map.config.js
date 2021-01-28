@@ -11,7 +11,7 @@ const mapConfig = {
     spatialReference: "EPSG:3857", //空间参考(EPSG) 默认为'EPSG:3857'， 投影坐标系配置为：identity
     resolutions: getResolutions()
   }
-}
+};
 
 function getResolutions(res = []) {
   const d = 2 * 6378137 * Math.PI;

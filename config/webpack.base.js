@@ -6,6 +6,7 @@ module.exports = merge({}, {
     main: "./src/main.jsx",
     react: ["react", "react-dom", "react-router-dom", "redux", "react-redux"],
     echarts: ["echarts"],
+    maptalks: ["maptalks", "maptalks.arcgistilelayer", "maptalks.wmts"]
   },
 
   optimization: {
@@ -26,6 +27,12 @@ module.exports = merge({}, {
         echarts: {
           test: "echarts",
           name: "echarts_bundle",
+          priority: 80,
+          reuseExistingChunk: true
+        },
+        maptalks: {
+          test: "maptalks",
+          name: "maptalks_bundle",
           priority: 80,
           reuseExistingChunk: true
         },

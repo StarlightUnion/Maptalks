@@ -32,6 +32,6 @@ const variableConfig = {
   monitorIw: null, //智慧井盖
   monitorPs: null, //泵站
   networkFault: null //管网缺陷
-}
+};
 
 export default variableConfig;

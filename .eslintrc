@@ -41,7 +41,7 @@
     "no-loop-func": "error",
     "no-undefined": "error",
     "arrow-spacing": ["error", { "before": true, "after": true }],
-    "eol-last": ["error", "always"],
+    "eol-last": "off",
     "no-multi-spaces": ["error", { "ignoreEOLComments": true }],
     "no-trailing-spaces": "error",
     "space-infix-ops": "error",

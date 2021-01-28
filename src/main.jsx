@@ -46,8 +46,8 @@ class App extends React.Component {
 
     // 全局配置
     store.dispatch({
-      type: ACTION_TYPE.GLOBALCONFIG,
-      globalConfig: {
+      type: ACTION_TYPE.CONFIG,
+      config: {
         routes: this.routes,// 路由参数
         projectName: "maptalks",// 项目名称
       }

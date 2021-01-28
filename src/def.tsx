@@ -3,7 +3,7 @@
 export
 enum ACTION_TYPE {
   CONFIG,
-  GLOBALCONFIG
+  MAP
 }
 
 
