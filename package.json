@@ -19,6 +19,7 @@
     "echarts": "^4.1.0",
     "maptalks": "^1.0.0-alpha.14",
     "maptalks.arcgistilelayer": "^0.1.5",
+    "maptalks.three": "^0.13.2",
     "maptalks.wmts": "^1.0.3",
     "moment": "^2.27.0",
     "react": "^16.13.1",
@@ -30,7 +31,9 @@
     "react-redux": "^7.0.1",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "stats.js": "^0.17.0",
+    "three": "^0.125.1"
   },
   "scripts": {
     "clean-dev": "rimraf dist/development-live",
