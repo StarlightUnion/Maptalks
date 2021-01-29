@@ -1,11 +1,11 @@
-// import * as maptalks from "#/maptalks/maptalks.es";// 本地文件
 import * as maptalks from "maptalks";
 import * as THREE from "three";
 import { ThreeLayer } from "maptalks.three";
 import mapConfig from "./config/map.config";
 import layerConfig from "./config/layer.config";
 import variableConfig from "./config/variable.config";
-import { setScaleBar, setZoomBar, setStats } from "./mapTool";
+import { setScaleBar, setZoomBar, setCompass, setStats } from "./tools/mapTool";
+import "maptalks/dist/maptalks.css";
 
 
 // 初始化地图
@@ -29,14 +29,14 @@ export const initMapVisual = () => {
   const map = new maptalks.Map("map", {
     center: center,
     zoom: zoom,
-    pitch: pitch, //俯仰角
-    minZoom: minZoom, //最小缩放比例
-    maxZoom: maxZoom, //最大缩放比例
-    bearing: bearing, //方位
+    pitch: pitch, // 俯仰角
+    minZoom: minZoom, // 最小缩放比例
+    maxZoom: maxZoom, // 最大缩放比例
+    bearing: bearing, // 方位
     fog: fog,
     centerCross: false,
-    doubleClickZoom: false, //双击缩放,
-    seamlessZoom: true, //是否使用无缝缩放模式
+    doubleClickZoom: false, // 双击缩放,
+    seamlessZoom: true, // 是否使用无缝缩放模式
     attribution: false,
     spatialReference: {
       projection: spatialReference,
@@ -120,6 +120,7 @@ const animation = () => {
 
 // 初始化插件
 export const initPlugins = (map) => {
-  setScaleBar(map); //比例尺
-  // setZoomBar(map); //缩放控件
+  setScaleBar(map); // 比例尺
+  setZoomBar(map); // 缩放控件
+  setCompass(map); // 指北针
 };

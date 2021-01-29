@@ -6,7 +6,12 @@ module.exports = merge({}, {
     main: "./src/main.jsx",
     react: ["react", "react-dom", "react-router-dom", "redux", "react-redux"],
     echarts: ["echarts"],
-    maptalks: ["maptalks", "maptalks.arcgistilelayer", "maptalks.wmts"]
+    maptalks: [
+      "maptalks",
+      "maptalks.three",
+      "maptalks.arcgistilelayer",
+      "maptalks.wmts"
+    ]
   },
 
   optimization: {

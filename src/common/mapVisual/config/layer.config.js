@@ -1,8 +1,6 @@
 import * as maptalks from "maptalks";
-// import * as maptalks from "#/maptalks/maptalks.es";// 本地文件
 // import { ArcGISTileLayer } from "maptalks.arcgistilelayer";
 import { WMTSTileLayer } from "maptalks.wmts";
-import "maptalks/dist/maptalks.css";
 
 const tdtKey = process.env.NODE_ENV === "production" ?
   window.API["prod"].tdtKey :

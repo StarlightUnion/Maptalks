@@ -95,9 +95,17 @@ module.exports = merge(base_webpack_config, {
       },
       {
         test: /\.css$/,
-        use: {
-          loader: "css-loader"
-        }
+        use: [{
+            loader: "style-loader",
+            options: {
+              sourceMap: true,
+              hmr: true
+            }
+          },
+          {
+            loader: "css-loader"
+          }
+        ]
       },
       {
         test: /\.html$/,
