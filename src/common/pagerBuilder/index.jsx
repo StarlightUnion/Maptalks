@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { MapVisual } from "../mapVisual";
 import "./index.less";
 
+
 const mapStateToProps = (state) => {
   return { config: state.config };
 };

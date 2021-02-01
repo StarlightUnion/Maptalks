@@ -4,6 +4,7 @@ import store from "../../../store";
 import { ACTION_TYPE } from "../../../def";
 import "./index.less";
 
+
 function MapVisual (props) {
   useEffect(() => {
     // 初始化

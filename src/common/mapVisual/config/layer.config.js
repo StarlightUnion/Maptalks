@@ -2,6 +2,7 @@ import * as maptalks from "maptalks";
 // import { ArcGISTileLayer } from "maptalks.arcgistilelayer";
 import { WMTSTileLayer } from "maptalks.wmts";
 
+
 const tdtKey = process.env.NODE_ENV === "production" ?
   window.API["prod"].tdtKey :
   window.API["dev"].tdtKey;
@@ -62,7 +63,7 @@ const layerConfig = {
     maxZoom: 18,
     urlTemplate: `https://t{s}.tianditu.gov.cn/vec_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=vec&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&tk=${tdtKey}`,
     subdomains: ["0", "1", "2", "3", "4", "5"],
-    cssFilter: "sepia(100%) invert(90%)",
+    cssFilter: "sepia(60%) invert(90%)",
   }),
   // Dark_CSS_Layer_Bz: new WMTSTileLayer("暗黑蓝调地图标注", { //全国天地图标注
   //   spatialReference: {
@@ -87,7 +88,7 @@ const layerConfig = {
     maxZoom: 18,
     urlTemplate: `https://t{s}.tianditu.gov.cn/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=${tdtKey}`,
     subdomains: ["1", "2", "3", "4", "5"],
-    cssFilter: "sepia(100%) invert(90%)",
+    cssFilter: "sepia(60%) invert(90%)",
   }),
   // 行政边界
   // v_Layer: new maptalks.VectorLayer("v", {

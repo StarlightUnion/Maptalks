@@ -10,7 +10,7 @@ function Routes(props) {
   if (Array.isArray(routes) && routes.length) {
     return (
       // 二级目录配置
-      <BrowserRouter basename="/screen">
+      <BrowserRouter basename="/map">
         <Switch>
           {/* 路由生成 */}
           {
