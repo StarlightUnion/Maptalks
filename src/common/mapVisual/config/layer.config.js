@@ -1,3 +1,9 @@
+/*
+ * @Descripttion: map图层配置文件
+ * @Author: wxc
+ * @Date: 2021-01-25 09:04:19
+ * @LastEditTime: 2021-02-02 15:20:38
+ */
 import * as maptalks from "maptalks";
 // import { ArcGISTileLayer } from "maptalks.arcgistilelayer";
 import { WMTSTileLayer } from "maptalks.wmts";

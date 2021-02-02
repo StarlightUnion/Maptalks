@@ -1,3 +1,9 @@
+/*
+ * @Descripttion: 地图插件方法库
+ * @Author: wxc
+ * @Date: 2021-01-29 08:43:19
+ * @LastEditTime: 2021-02-02 15:18:55
+ */
 import * as maptalks from "maptalks";
 import Stats from "stats.js";
 import { CompassControl } from "#/maptalks.plugin/maptalks.control.compass/maptalks.control.compass.es";

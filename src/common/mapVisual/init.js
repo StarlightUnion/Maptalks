@@ -1,15 +1,21 @@
+/*
+ * @Descripttion: map初始化方法
+ * @Author: wxc
+ * @Date: 2021-01-29 08:43:19
+ * @LastEditTime: 2021-02-02 15:19:32
+ */
 import * as maptalks from "maptalks";
 import * as THREE from "three";
 import { ThreeLayer } from "maptalks.three";
 import mapConfig from "./config/map.config";
 import layerConfig from "./config/layer.config";
 import variableConfig from "./config/variable.config";
-import { setScaleBar, setZoomBar, setCompass, setStats } from "./tools/mapTool";
+import { setScaleBar, setZoomBar, setCompass, setStats } from "./tools";
 import "maptalks/dist/maptalks.css";
 
 
 // 初始化地图
-export let threeLayer, threeCustomLayer, stats;
+export let map, threeLayer, threeCustomLayer, stats;
 export const initMapVisual = () => {
   const _layerConfig = Object.values(layerConfig);
   const {
@@ -26,7 +32,7 @@ export const initMapVisual = () => {
 
   variableConfig.swipeLayer = layerConfig.Tdt_DXT_Layer;
 
-  const map = new maptalks.Map("map", {
+  map = new maptalks.Map("map", {
     center: center,
     zoom: zoom,
     pitch: pitch, // 俯仰角

@@ -1,4 +1,9 @@
-// 变量配置
+/*
+ * @Descripttion: 变量配置文件
+ * @Author: wxc
+ * @Date: 2021-01-29 08:43:19
+ * @LastEditTime: 2021-02-02 15:21:49
+ */
 const variableConfig = {
   CurrBaseMap: "Base_Layer", //(默认)当前展示的底图名称
   SwipeBeforeBaseMap: null, //地图卷帘之前显示的底图

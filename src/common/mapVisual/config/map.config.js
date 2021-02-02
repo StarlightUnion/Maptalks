@@ -1,4 +1,9 @@
-//地图初始化参数配置
+/*
+ * @Descripttion: map初始化配置文件
+ * @Author: wxc
+ * @Date: 2021-01-25 09:04:19
+ * @LastEditTime: 2021-02-02 15:50:39
+ */
 const mapConfig = {
   Map: { //Map 初始化参数
     center: [120.1753355094545, 30.250438114340312], //地图中心点

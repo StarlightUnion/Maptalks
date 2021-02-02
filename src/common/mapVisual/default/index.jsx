@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { initMapVisual, initPlugins } from "../init";
 import store from "../../../store";
 import { ACTION_TYPE } from "../../../def";
 import "./index.less";
 
 
-function MapVisual (props) {
+let mapRef = null;
+function MapVisual () {
+  mapRef = useRef();
+
   useEffect(() => {
     // 初始化
     const map = initMapVisual();
@@ -19,7 +22,7 @@ function MapVisual (props) {
     });
   });
 
-  return <div id="map"></div>;
+  return <div id="map" ref={mapRef}></div>;
 }
 
-export default MapVisual;
+export { MapVisual, mapRef };
