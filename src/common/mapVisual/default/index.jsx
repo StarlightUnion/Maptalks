@@ -12,8 +12,7 @@ function MapVisual () {
   useEffect(() => {
     // 初始化
     const map = initMapVisual();
-    console.info(map);
-    initPlugins(map);
+    initPlugins();
 
     // 保存到redux
     store.dispatch({

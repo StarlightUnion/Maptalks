@@ -2,7 +2,7 @@
  * @Descripttion: map初始化方法
  * @Author: wxc
  * @Date: 2021-01-29 08:43:19
- * @LastEditTime: 2021-02-02 15:19:32
+ * @LastEditTime: 2021-02-03 10:00:42
  */
 import * as maptalks from "maptalks";
 import * as THREE from "three";
@@ -10,7 +10,7 @@ import { ThreeLayer } from "maptalks.three";
 import mapConfig from "./config/map.config";
 import layerConfig from "./config/layer.config";
 import variableConfig from "./config/variable.config";
-import { setScaleBar, setZoomBar, setCompass, setStats } from "./tools";
+import { mapTool } from "./tools";
 import "maptalks/dist/maptalks.css";
 
 
@@ -79,7 +79,7 @@ export const initMapVisual = () => {
   };
 
   threeLayer.prepareToDraw = function(gl, scene, camera) {
-    stats = setStats(); // 显示帧数和渲染时间
+    stats = mapTool.setStats(); // 显示帧数和渲染时间
     const light = new THREE.DirectionalLight(0xffffff);
     light.position.set(0, -10, 10).normalize();
 
@@ -125,8 +125,8 @@ const animation = () => {
 };
 
 // 初始化插件
-export const initPlugins = (map) => {
-  setScaleBar(map); // 比例尺
-  setZoomBar(map); // 缩放控件
-  setCompass(map); // 指北针
+export const initPlugins = () => {
+  mapTool.setScaleBar(); // 比例尺
+  mapTool.setZoomBar(); // 缩放控件
+  mapTool.setCompass(); // 指北针
 };
