@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Button, Radio } from "antd";
 import PageBuilder from "../../../common/pagerBuilder";
 // import { mapRef } from "../../../common/mapVisual";
 import { mapApi } from "../../../common/mapVisual/api";
+import { utils } from "../../../common/mapVisual/tools";
 import { layerControl } from "../../../common/mapVisual/tools";
 import "./index.less";
 
@@ -11,12 +12,25 @@ const layers = layerControl.getAllBaseGroupName();
 const HomePage = PageBuilder(() => {
   const [fstxt, setFstxt] = useState("进入全屏");
 
+  // 监听全屏状态下的esc事件
+  const windowChangeEvent = useCallback(() => {
+    if (!utils.isFullScreen()) setFstxt("进入全屏");
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("resize", windowChangeEvent);
+
+    return () => {
+      window.removeEventListener("resize", windowChangeEvent);
+    };
+  }, [windowChangeEvent]);
+
   // 进入全屏
   const fullScreen = () => {
     // mapApi.mapFullScreen(mapRef.current);
 
-    const isFullScreen = mapApi.mapFullScreen(document.body);
-    setFstxt(!isFullScreen ? "退出全屏" : "进入全屏");
+    const isFull = mapApi.mapFullScreen(document.body);
+    setFstxt(!isFull ? "退出全屏" : "进入全屏");
   };
 
   // 显示隐藏base图层

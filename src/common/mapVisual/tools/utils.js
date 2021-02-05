@@ -2,7 +2,7 @@
  * @Descripttion: 工具方法库
  * @Author: wxc
  * @Date: 2021-02-02 14:38:43
- * @LastEditTime: 2021-02-05 13:43:46
+ * @LastEditTime: 2021-02-05 22:44:29
  */
 import { message } from "antd";
 
@@ -14,7 +14,7 @@ export default {
    * @param null
    * @return {boolean}
    */
-  isFullscreen() {
+  isFullScreen() {
     return window.fullScreen ||
       document.webkitIsFullScreen ||
       document.msFullscreenEnabled ||
@@ -34,12 +34,12 @@ export default {
       el.msRequestFullscreen;
 
     typeof rfs !== "undefined" ?
-      !this.isFullscreen() ?
+      !this.isFullScreen() ?
       rfs.call(el) :
       this.exitFullScreen() :
       message.warning("当前浏览器不支持部分全屏");
 
-    return this.isFullscreen();
+    return this.isFullScreen();
   },
 
   /**
