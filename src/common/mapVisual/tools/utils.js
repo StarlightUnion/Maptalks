@@ -2,7 +2,7 @@
  * @Descripttion: 工具方法库
  * @Author: wxc
  * @Date: 2021-02-02 14:38:43
- * @LastEditTime: 2021-02-03 14:01:54
+ * @LastEditTime: 2021-02-05 13:43:46
  */
 import { message } from "antd";
 
@@ -20,6 +20,7 @@ export default {
       document.msFullscreenEnabled ||
       false;
   },
+
   /**
    * @name: enterFullScreen
    * @description: 进入全屏
@@ -40,6 +41,7 @@ export default {
 
     return this.isFullscreen();
   },
+
   /**
    * @name: exitFullScreen
    * @description: 离开全屏

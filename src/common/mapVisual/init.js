@@ -2,35 +2,36 @@
  * @Descripttion: map初始化方法
  * @Author: wxc
  * @Date: 2021-01-29 08:43:19
- * @LastEditTime: 2021-02-03 10:00:42
+ * @LastEditTime: 2021-02-05 14:49:35
  */
 import * as maptalks from "maptalks";
 import * as THREE from "three";
 import { ThreeLayer } from "maptalks.three";
 import mapConfig from "./config/map.config";
-import layerConfig from "./config/layer.config";
-import variableConfig from "./config/variable.config";
+import { baseLayerConfig } from "./config/baseLayer.config";
+// import variableConfig from "./config/variable.config";
 import { mapTool } from "./tools";
 import "maptalks/dist/maptalks.css";
 
 
-// 初始化地图
-export let map, threeLayer, threeCustomLayer, stats;
-export const initMapVisual = () => {
-  const _layerConfig = Object.values(layerConfig);
-  const {
-    center,
-    zoom,
-    pitch,
-    minZoom,
-    maxZoom,
-    bearing,
-    fog,
-    spatialReference,
-    resolutions
-  } = mapConfig.Map;
+const {
+  center,
+  zoom,
+  pitch,
+  minZoom,
+  maxZoom,
+  bearing,
+  fog,
+  spatialReference,
+  resolutions
+} = mapConfig.Map;
 
-  variableConfig.swipeLayer = layerConfig.Tdt_DXT_Layer;
+export let map, stats, threeLayer, threeCustomLayer;
+
+// 初始化地图
+const initMapVisual = () => {
+  const _baseLayerConfig = Object.values(baseLayerConfig)
+    .reduce((prev, item) => [...prev, ...item.layers], []);
 
   map = new maptalks.Map("map", {
     center: center,
@@ -48,19 +49,18 @@ export const initMapVisual = () => {
       projection: spatialReference,
       resolutions: resolutions
     },
-    baseLayer: layerConfig.Tdt_YXT_Layer,
-    layers: _layerConfig,
+    layers: _baseLayerConfig,
   });
 
   // three
-  threeLayer = new ThreeLayer("threejsLayer", {
+  threeLayer = new ThreeLayer("ThreeLayer", {
     forceRenderOnMoving: true,
     forceRenderOnRotating: true,
     forceRenderOnZooming: true,
     animation: true
   });
 
-  threeCustomLayer = new ThreeLayer("threeCustomLayer", {
+  threeCustomLayer = new ThreeLayer("ThreeCustomLayer", {
     forceRenderOnMoving: true,
     forceRenderOnRotating: true,
     forceRenderOnZooming: true,
@@ -125,8 +125,10 @@ const animation = () => {
 };
 
 // 初始化插件
-export const initPlugins = () => {
+const initPlugins = () => {
   mapTool.setScaleBar(); // 比例尺
   mapTool.setZoomBar(); // 缩放控件
   mapTool.setCompass(); // 指北针
 };
+
+export { initMapVisual, initPlugins };

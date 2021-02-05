@@ -2,19 +2,14 @@
  * @Descripttion: 地图相关api方法库
  * @Author: wxc
  * @Date: 2021-02-02 14:32:24
- * @LastEditTime: 2021-02-03 14:06:23
+ * @LastEditTime: 2021-02-05 17:11:43
  */
 import { map } from "../init";
-import { tool } from "../tools";
+import { utils } from "../tools";
 import mapConfig from "../config/map.config";
 
 
-const {
-  zoom,
-  center,
-  pitch,
-  bearing
-} = mapConfig.Map;
+const { zoom, center, pitch, bearing } = mapConfig.Map;
 
 export default {
   mapFullExtent() { // 地图全幅 => 参数来自于默认设置mapConfig
@@ -74,6 +69,6 @@ export default {
     });
   },
   mapFullScreen(el) { // 地图全屏事件
-    return tool.enterFullScreen(el);
+    return utils.enterFullScreen(el);
   }
 };

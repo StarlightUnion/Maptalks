@@ -14,6 +14,8 @@ function MapVisual () {
     const map = initMapVisual();
     initPlugins();
 
+    console.info(map);
+
     // 保存到redux
     store.dispatch({
       type: ACTION_TYPE.MAP,

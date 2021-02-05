@@ -2,7 +2,7 @@
  * @Descripttion: 地图插件方法库
  * @Author: wxc
  * @Date: 2021-01-29 08:43:19
- * @LastEditTime: 2021-02-03 13:35:16
+ * @LastEditTime: 2021-02-05 14:50:21
  */
 import * as maptalks from "maptalks";
 import Stats from "stats.js";
