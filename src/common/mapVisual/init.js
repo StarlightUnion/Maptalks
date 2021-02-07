@@ -2,7 +2,7 @@
  * @Descripttion: map初始化方法
  * @Author: wxc
  * @Date: 2021-01-29 08:43:19
- * @LastEditTime: 2021-02-06 17:14:43
+ * @LastEditTime: 2021-02-07 14:53:01
  */
 import * as maptalks from "maptalks";
 import * as THREE from "three";
@@ -27,7 +27,12 @@ const {
   resolutions
 } = mapConfig.Map;
 
-export let map, stats, threeLayer, threeCustomLayer;
+export let
+  map, // 地图实例
+  stats, // stats实例
+  swiperLayer, // 卷帘图层
+  threeLayer,
+  threeCustomLayer;
 
 // 初始化地图
 const initMapVisual = () => {
@@ -54,6 +59,7 @@ const initMapVisual = () => {
   });
 
   layerApi.showLayerByGroupName("暗黑图");
+  swiperLayer = map.getLayer("天地图地形图");
 
   // three
   threeLayer = new ThreeLayer("ThreeLayer", {

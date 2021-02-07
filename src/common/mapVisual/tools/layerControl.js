@@ -2,7 +2,7 @@
  * @Descripttion: 图层控制方法库
  * @Author: wxc
  * @Date: 2021-02-05 18:39:28
- * @LastEditTime: 2021-02-06 15:41:55
+ * @LastEditTime: 2021-02-07 14:30:02
  */
 import { baseLayerConfig } from "../config/baseLayer.config";
 import { map } from "../init";
@@ -82,5 +82,22 @@ export default {
     this.getBaseLayerIdByGroupName(groupName).forEach(item => {
       map.getLayer(item).options.visible = true;
     });
+  },
+
+  /**
+   * @name: showOrHideLayerByLayerId
+   * @description: 显示或隐藏指定id的底图
+   * @param {string | array} id
+   * @param {boolean} show
+   * @return null
+   */
+  showOrHideLayerByLayerId(id, show) {
+    if (typeof id === "string") {
+      map.getLayer(id).options.visible = show;
+    } else if (Array.isArray(id)) {
+      id.forEach(item => {
+        map.getLayer(item).options.visible = show;
+      });
+    }
   }
 };

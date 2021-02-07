@@ -16,10 +16,7 @@ const HomePage = PageBuilder(() => {
   const [disableState, setDisableState] = useState(false);
 
   // 订阅更新
-  const currentGroupShow = useSelector(state => {
-    console.info(state);
-    return state.currentGroupShow;
-  });
+  const currentGroupShow = useSelector(state => state.currentGroupShow);
 
   // 监听全屏状态下的esc事件
   const windowChangeEvent = useCallback(() => {
