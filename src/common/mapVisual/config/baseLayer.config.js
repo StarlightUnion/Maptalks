@@ -2,7 +2,7 @@
  * @Descripttion: map图层配置文件
  * @Author: wxc
  * @Date: 2021-01-25 09:04:19
- * @LastEditTime: 2021-02-05 11:33:22
+ * @LastEditTime: 2021-02-06 17:14:57
  */
 import * as maptalks from "maptalks";
 // import { ArcGISTileLayer } from "maptalks.arcgistilelayer";
@@ -64,7 +64,7 @@ const baseLayerConfig = {
     layers: [
       new WMTSTileLayer("暗黑蓝调地图", { //全国天地图
         opacity: 0.8,
-        visible: true,
+        visible: false,
         minZoom: 0,
         maxZoom: 18,
         urlTemplate: `https://t{s}.tianditu.gov.cn/vec_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=vec&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&tk=${tdtKey}`,
@@ -73,7 +73,7 @@ const baseLayerConfig = {
       }),
       new WMTSTileLayer("暗黑蓝调地图标注", { //全国天地图标注
         opacity: 0.8,
-        visible: true,
+        visible: false,
         minZoom: 0,
         maxZoom: 18,
         urlTemplate: `https://t{s}.tianditu.gov.cn/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=${tdtKey}`,

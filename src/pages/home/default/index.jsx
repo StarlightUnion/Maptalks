@@ -1,16 +1,23 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Button, Radio } from "antd";
+import { connect } from "react-redux";
+import { Button, Radio, Switch, Slider } from "antd";
 import PageBuilder from "../../../common/pagerBuilder";
 // import { mapRef } from "../../../common/mapVisual";
-import { mapApi } from "../../../common/mapVisual/api";
+import { mapApi, layerApi } from "../../../common/mapVisual/api";
 import { utils } from "../../../common/mapVisual/tools";
-import { layerControl } from "../../../common/mapVisual/tools";
 import "./index.less";
 
 
-const layers = layerControl.getAllBaseGroupName();
-const HomePage = PageBuilder(() => {
+const mapStateToProps = (state) => {
+  return { currentGroupShow: state.currentGroupShow };
+};
+const layers = layerApi.allBaseGroup();
+
+const HomePage = PageBuilder(connect(mapStateToProps)((props) => {
+  console.info(props);
+
   const [fstxt, setFstxt] = useState("进入全屏");
+  const [sliderShow, setSliderShow] = useState(false);
 
   // 监听全屏状态下的esc事件
   const windowChangeEvent = useCallback(() => {
@@ -35,13 +42,43 @@ const HomePage = PageBuilder(() => {
 
   // 显示隐藏base图层
   const onLayerSelectChange = (e) => {
-    layerControl.showLayerByGroupName(e.target.value);
+    layerApi.showLayerByGroupName(e.target.value);
+  };
+
+  // 是否开启地图卷帘
+  const onSwiperSwitchChange = (state) => {
+    setSliderShow(state);
+    layerApi.swipe(state);
+  };
+
+  // 卷帘滑动条滑动
+  const onSliderChange = (num) => {
+    console.info(num);
   };
 
   return (
     <main className="page-content">
+      <section className="swiper-bar">
+        <span className="bar-title">{"地图卷帘"}</span>
+        <Switch
+          onChange={onSwiperSwitchChange}
+          checkedChildren="开启"
+          unCheckedChildren="关闭"
+          style={{marginRight: ".4rem"}}
+        />
+        {
+          sliderShow ?
+            <div className="slider-container">
+              <Slider defaultValue={50} onChange={onSliderChange} />
+            </div>
+            : null
+        }
+      </section>
       <section className="layer-bar">
-        <Radio.Group onChange={onLayerSelectChange} defaultValue={layerControl.currentGroupShow}>
+        <Radio.Group
+          onChange={onLayerSelectChange}
+          defaultValue={layerApi.currentGroupShow}
+        >
           {
             layers.map(item => <Radio.Button value={item} key={item}>{item}</Radio.Button>)
           }
@@ -57,6 +94,6 @@ const HomePage = PageBuilder(() => {
       </section>
     </main>
   );
-});
+}));
 
 export { HomePage };

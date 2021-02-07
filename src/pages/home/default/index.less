@@ -5,16 +5,29 @@
   flex-direction: column;
   justify-content: flex-end;
 
+  & > section {
+    padding: .5rem;
+    height: 48px;
+    display: flex;
+    align-items: center;
+
+    & > .bar-title {
+      color: #fff;
+      margin-right: .4rem;
+    }
+  }
+
   & > .tool-bar {
     display: flex;
-    padding: .5rem;
 
     & > button {
       margin-right: .4rem;
     }
   }
 
-  & > .layer-bar {
-    padding: .5rem;
+  & > .swiper-bar {
+    & > .slider-container {
+      width: 280px;
+    }
   }
 }

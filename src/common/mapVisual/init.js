@@ -2,7 +2,7 @@
  * @Descripttion: map初始化方法
  * @Author: wxc
  * @Date: 2021-01-29 08:43:19
- * @LastEditTime: 2021-02-05 21:59:31
+ * @LastEditTime: 2021-02-06 17:14:43
  */
 import * as maptalks from "maptalks";
 import * as THREE from "three";
@@ -11,6 +11,7 @@ import mapConfig from "./config/map.config";
 import { baseLayerConfig } from "./config/baseLayer.config";
 // import variableConfig from "./config/variable.config";
 import { mapTool } from "./tools";
+import { layerApi } from "./api";
 import "maptalks/dist/maptalks.css";
 
 
@@ -51,6 +52,8 @@ const initMapVisual = () => {
     },
     layers: _baseLayerConfig,
   });
+
+  layerApi.showLayerByGroupName("暗黑图");
 
   // three
   threeLayer = new ThreeLayer("ThreeLayer", {

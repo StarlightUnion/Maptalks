@@ -2,9 +2,11 @@
  * @Descripttion: 工具方法库
  * @Author: wxc
  * @Date: 2021-02-02 14:38:43
- * @LastEditTime: 2021-02-05 22:44:29
+ * @LastEditTime: 2021-02-06 16:59:48
  */
 import { message } from "antd";
+import store from "../../../store";
+import { ACTION_TYPE } from "../../../def";
 
 
 export default {
@@ -58,5 +60,19 @@ export default {
     } else if (document.msExitFullscreen) {
       document.msExitFullscreen();
     }
+  },
+
+  /**
+   * @name: dispatchState
+   * @description: 发送状态到store
+   * @param {string} type
+   * @param {*} state
+   * @return null
+   */
+  dispatchState(type, state) {
+    store.dispatch({
+      type: ACTION_TYPE[type],
+      state
+    });
   }
 };

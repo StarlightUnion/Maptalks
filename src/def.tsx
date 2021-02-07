@@ -3,7 +3,8 @@
 export
 enum ACTION_TYPE {
   CONFIG,
-  MAP
+  MAP,
+  CURRENTGROUPSHOW
 }
 
 

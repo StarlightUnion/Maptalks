@@ -2,7 +2,7 @@
  * @Descripttion: 地图相关api方法库
  * @Author: wxc
  * @Date: 2021-02-02 14:32:24
- * @LastEditTime: 2021-02-05 17:11:43
+ * @LastEditTime: 2021-02-06 14:50:54
  */
 import { map } from "../init";
 import { utils } from "../tools";
@@ -12,7 +12,11 @@ import mapConfig from "../config/map.config";
 const { zoom, center, pitch, bearing } = mapConfig.Map;
 
 export default {
-  mapFullExtent() { // 地图全幅 => 参数来自于默认设置mapConfig
+  /**
+   * @name: mapFullExtent
+   * @description: 地图全幅 => 参数来自于默认设置mapConfig
+   */
+  mapFullExtent() {
     map.animateTo({
       zoom: zoom,
       center: center,
@@ -22,7 +26,12 @@ export default {
       duration: 2000
     });
   },
-  mapTo2Dview() { // 2D视角
+
+  /**
+   * @name: mapTo2Dview
+   * @description: 2D视角
+   */
+  mapTo2Dview() {
     map.animateTo({
       zoom: zoom - 1,
       center: center,
@@ -33,7 +42,12 @@ export default {
     });
     map.options.dragPitch = false;
   },
-  mapTo3Dview() { // 3D视角
+
+  /**
+   * @name: mapTo3Dview
+   * @description: 3D视角
+   */
+  mapTo3Dview() {
     map.animateTo({
       zoom: zoom,
       center: center,
@@ -44,21 +58,39 @@ export default {
     });
     map.options.dragPitch = true;
   },
-  zoomIn() { // 放大
+
+  /**
+   * @name: zoomIn
+   * @description: 放大
+   */
+  zoomIn() {
     map.animateTo({
       zoom: map.getZoom() + 1,
     }, {
       duration: 1000
     });
   },
-  zoomOut() { // 缩小
+
+  /**
+   * @name: zoomOut
+   * @description: 缩小
+   */
+  zoomOut() {
     map.animateTo({
       zoom: map.getZoom() - 1,
     }, {
       duration: 1000
     });
   },
-  mapToCoordinate(x, y) { // 弹框居中拉近动画
+
+  /**
+   * @name: mapToCoordinate
+   * @description: 地图定位到给定坐标 + 动画效果
+   * @param {float} x
+   * @param {float} y
+   * @return null
+   */
+  mapToCoordinate(x, y) {
     map.animateTo({
       zoom: map.getZoom() + (map.getZoom() > 17 ? 0 : 1),
       center: [x, y],
@@ -68,6 +100,13 @@ export default {
       duration: 1000
     });
   },
+
+  /**
+   * @name: mapFullScreen
+   * @description: 使某个元素进入全屏状态 返回当前是否是全屏状态
+   * @param {element} el
+   * @return {boolean}
+   */
   mapFullScreen(el) { // 地图全屏事件
     return utils.enterFullScreen(el);
   }

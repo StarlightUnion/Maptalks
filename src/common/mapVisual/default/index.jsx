@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import { initMapVisual, initPlugins } from "../init";
 import store from "../../../store";
 import { ACTION_TYPE } from "../../../def";
+import { initMapVisual, initPlugins } from "../init";
+import { utils } from "../tools";
 import "./index.less";
 
 
@@ -17,10 +18,7 @@ function MapVisual () {
     console.info(map);
 
     // 保存到redux
-    store.dispatch({
-      type: ACTION_TYPE.MAP,
-      config: map
-    });
+    utils.dispatchState("MAP", map);
   });
 
   return <div id="map" ref={mapRef}></div>;

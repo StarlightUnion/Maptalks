@@ -2,7 +2,7 @@
  * @Descripttion: 图层控制方法库
  * @Author: wxc
  * @Date: 2021-02-05 18:39:28
- * @LastEditTime: 2021-02-05 17:01:09
+ * @LastEditTime: 2021-02-06 15:41:55
  */
 import { baseLayerConfig } from "../config/baseLayer.config";
 import { map } from "../init";
@@ -10,8 +10,6 @@ import { map } from "../init";
 
 export default {
   allBaseLayerId: [], // 所有图层id
-  allBaseGroupName: [], // 所有图层组名
-  currentGroupShow: "暗黑图", // 默认显示组
 
   /**
    * @name: getAllBaseGroupName
@@ -20,15 +18,9 @@ export default {
    * @return {array}
    */
   getAllBaseGroupName() {
-    return this.allBaseGroupName.length ?
-      this.allBaseGroupName :
-      (() => {
-        this.allBaseGroupName = Object.values(baseLayerConfig)
-          .sort((a, b) => a.index - b.index)
-          .map(item => item.groupName);
-
-        return this.allBaseGroupName;
-      })();
+    return Object.values(baseLayerConfig)
+      .sort((a, b) => a.index - b.index)
+      .map(item => item.groupName);
   },
 
   /**
@@ -84,8 +76,7 @@ export default {
    * @param {string} groupName
    * @return null
    */
-  showLayerByGroupName(groupName = this.currentGroupShow) {
-    this.currentGroupShow = groupName;
+  showLayerByGroupName(groupName) {
     this.hideAllBasicLayer();
 
     this.getBaseLayerIdByGroupName(groupName).forEach(item => {
