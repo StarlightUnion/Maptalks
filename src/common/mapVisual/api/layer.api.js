@@ -2,14 +2,14 @@
  * @Descripttion: 图层控制api方法库
  * @Author: wxc
  * @Date: 2021-02-06 14:46:05
- * @LastEditTime: 2021-02-06 17:04:42
+ * @LastEditTime: 2021-02-07 10:58:30
  */
 import { map } from "../init";
 import { utils, layerControl } from "../tools";
 
 
 export default {
-  currentGroupShow: "暗黑图", // 默认显示组
+  currentGroupShow: "", // 默认显示组
   allBaseGroupName: [], // 所有图层组名
 
   /**
@@ -36,7 +36,7 @@ export default {
    */
   showLayerByGroupName(groupName = this.currentGroupShow) {
     this.currentGroupShow = groupName;
-    utils.dispatchState("CURRENTGROUPSHOW", this.currentGroupShow);
+    utils.dispatchState("CURRENTGROUPSHOW", { currentGroupShow: this.currentGroupShow });
     layerControl.showLayerByGroupName(groupName);
   },
 
@@ -50,7 +50,11 @@ export default {
     if (state) {
       layerControl.hideAllBasicLayer();
       this.currentGroupShow = "影像图";
-      utils.dispatchState("CURRENTGROUPSHOW", this.currentGroupShow);
+      utils.dispatchState("CURRENTGROUPSHOW", { currentGroupShow: this.currentGroupShow });
+
+      // 显示指定图层组
+      layerControl.showLayerByGroupName("影像图");
+      layerControl.showLayerByGroupName("地形图");
 
       // map.getBaseLayer("天地图影像图").options.visible = true;
       // map.getLayer("天地图地形图").options.visible = true;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { Button, Radio, Switch, Slider } from "antd";
 import PageBuilder from "../../../common/pagerBuilder";
 // import { mapRef } from "../../../common/mapVisual";
@@ -8,16 +8,18 @@ import { utils } from "../../../common/mapVisual/tools";
 import "./index.less";
 
 
-const mapStateToProps = (state) => {
-  return { currentGroupShow: state.currentGroupShow };
-};
 const layers = layerApi.allBaseGroup();
 
-const HomePage = PageBuilder(connect(mapStateToProps)((props) => {
-  console.info(props);
-
+const HomePage = PageBuilder(() => {
   const [fstxt, setFstxt] = useState("进入全屏");
   const [sliderShow, setSliderShow] = useState(false);
+  const [disableState, setDisableState] = useState(false);
+
+  // 订阅更新
+  const currentGroupShow = useSelector(state => {
+    console.info(state);
+    return state.currentGroupShow;
+  });
 
   // 监听全屏状态下的esc事件
   const windowChangeEvent = useCallback(() => {
@@ -47,13 +49,14 @@ const HomePage = PageBuilder(connect(mapStateToProps)((props) => {
 
   // 是否开启地图卷帘
   const onSwiperSwitchChange = (state) => {
+    setDisableState(state);
     setSliderShow(state);
     layerApi.swipe(state);
   };
 
   // 卷帘滑动条滑动
   const onSliderChange = (num) => {
-    console.info(num);
+    // console.info(num);
   };
 
   return (
@@ -77,6 +80,8 @@ const HomePage = PageBuilder(connect(mapStateToProps)((props) => {
       <section className="layer-bar">
         <Radio.Group
           onChange={onLayerSelectChange}
+          value={currentGroupShow}
+          disabled={disableState}
           defaultValue={layerApi.currentGroupShow}
         >
           {
@@ -94,6 +99,6 @@ const HomePage = PageBuilder(connect(mapStateToProps)((props) => {
       </section>
     </main>
   );
-}));
+});
 
-export { HomePage };
+export default HomePage;

@@ -1,6 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import store from "../../../store";
-import { ACTION_TYPE } from "../../../def";
 import { initMapVisual, initPlugins } from "../init";
 import { utils } from "../tools";
 import "./index.less";
@@ -15,10 +13,8 @@ function MapVisual () {
     const map = initMapVisual();
     initPlugins();
 
-    console.info(map);
-
     // 保存到redux
-    utils.dispatchState("MAP", map);
+    utils.dispatchState("MAP", { map: map });
   });
 
   return <div id="map" ref={mapRef}></div>;

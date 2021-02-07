@@ -2,7 +2,7 @@
  * @Descripttion: 工具方法库
  * @Author: wxc
  * @Date: 2021-02-02 14:38:43
- * @LastEditTime: 2021-02-06 16:59:48
+ * @LastEditTime: 2021-02-07 10:47:30
  */
 import { message } from "antd";
 import store from "../../../store";
@@ -72,7 +72,7 @@ export default {
   dispatchState(type, state) {
     store.dispatch({
       type: ACTION_TYPE[type],
-      state
+      ...state
     });
   }
 };
