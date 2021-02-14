@@ -2,7 +2,7 @@
  * @Descripttion: 地图相关api方法库
  * @Author: wxc
  * @Date: 2021-02-02 14:32:24
- * @LastEditTime: 2021-02-06 14:50:54
+ * @LastEditTime: 2021-02-13 16:25:08
  */
 import { map } from "../init";
 import { utils } from "../tools";
@@ -12,6 +12,23 @@ import mapConfig from "../config/map.config";
 const { zoom, center, pitch, bearing } = mapConfig.Map;
 
 export default {
+  /**
+   * @name: mapInitAnimation
+   * @description: 地图初始化进入时的旋转特效
+   */
+  mapInitAnimation() {
+    setTimeout(() => {
+      map.animateTo({
+        zoom: zoom + 2,
+        center: center,
+        pitch: pitch,
+        bearing: bearing
+      }, {
+        duration: 5000
+      });
+    }, 2000);
+  },
+
   /**
    * @name: mapFullExtent
    * @description: 地图全幅 => 参数来自于默认设置mapConfig

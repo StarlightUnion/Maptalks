@@ -2,8 +2,9 @@
  * @Descripttion: 工具方法库
  * @Author: wxc
  * @Date: 2021-02-02 14:38:43
- * @LastEditTime: 2021-02-07 10:47:30
+ * @LastEditTime: 2021-02-14 22:27:13
  */
+import { map } from "../init";
 import { message } from "antd";
 import store from "../../../store";
 import { ACTION_TYPE } from "../../../def";
@@ -66,7 +67,7 @@ export default {
    * @name: dispatchState
    * @description: 发送状态到store
    * @param {string} type
-   * @param {*} state
+   * @param {object} state
    * @return null
    */
   dispatchState(type, state) {
@@ -74,5 +75,14 @@ export default {
       type: ACTION_TYPE[type],
       ...state
     });
+  },
+
+  /**
+   * @name: devicePixelRatio
+   * @description: 获取设备像素比
+   * @return {number}
+   */
+  devicePixelRatio() {
+    return map.getDevicePixelRatio();
   }
 };

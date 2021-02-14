@@ -2,7 +2,7 @@
  * @Descripttion: 图层控制方法库
  * @Author: wxc
  * @Date: 2021-02-05 18:39:28
- * @LastEditTime: 2021-02-07 14:30:02
+ * @LastEditTime: 2021-02-14 23:45:36
  */
 import { baseLayerConfig } from "../config/baseLayer.config";
 import { map } from "../init";
@@ -99,5 +99,19 @@ export default {
         map.getLayer(item).options.visible = show;
       });
     }
+  },
+
+  /**
+   * @name: getBaseLayerObjById
+   * @description: 获取指定id的底图对象
+   * @param {string} id
+   * @return {object | undefined}
+   */
+  getBaseLayerObjById(id) {
+    const layer = Object.values(baseLayerConfig)
+      .reduce((prev, item) => [...prev, ...item.layers], [])
+      .find(item => item._id === id);
+
+    return layer;
   }
 };

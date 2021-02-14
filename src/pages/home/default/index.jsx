@@ -48,12 +48,13 @@ const HomePage = PageBuilder(() => {
   const onSwiperSwitchChange = (state) => {
     setDisableState(state);
     setSliderShow(state);
+    layerApi.swipeScaleChange(50, false); // 设置卷帘默认值
     layerApi.swipe(state);
   };
 
   // 卷帘滑动条滑动
-  const onSliderChange = (num) => {
-    // console.info(num);
+  const onSliderChange = (value) => {
+    layerApi.swipeScaleChange(value, true);
   };
 
   return (
@@ -69,7 +70,7 @@ const HomePage = PageBuilder(() => {
         {
           sliderShow ?
             <div className="slider-container">
-              <Slider defaultValue={50} onChange={onSliderChange} />
+              <Slider defaultValue={50} min={1} onChange={onSliderChange} />
             </div>
             : null
         }

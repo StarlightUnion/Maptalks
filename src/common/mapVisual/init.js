@@ -2,7 +2,7 @@
  * @Descripttion: map初始化方法
  * @Author: wxc
  * @Date: 2021-01-29 08:43:19
- * @LastEditTime: 2021-02-07 14:53:01
+ * @LastEditTime: 2021-02-14 22:12:47
  */
 import * as maptalks from "maptalks";
 import * as THREE from "three";
@@ -11,7 +11,7 @@ import mapConfig from "./config/map.config";
 import { baseLayerConfig } from "./config/baseLayer.config";
 // import variableConfig from "./config/variable.config";
 import { mapTool } from "./tools";
-import { layerApi } from "./api";
+import { mapApi, layerApi } from "./api";
 import "maptalks/dist/maptalks.css";
 
 
@@ -30,7 +30,7 @@ const {
 export let
   map, // 地图实例
   stats, // stats实例
-  swiperLayer, // 卷帘图层
+  swipeLayer, // 卷帘图层
   threeLayer,
   threeCustomLayer;
 
@@ -59,7 +59,7 @@ const initMapVisual = () => {
   });
 
   layerApi.showLayerByGroupName("暗黑图");
-  swiperLayer = map.getLayer("天地图地形图");
+  swipeLayer = map.getLayer("天地图地形图");
 
   // three
   threeLayer = new ThreeLayer("ThreeLayer", {
@@ -97,18 +97,7 @@ const initMapVisual = () => {
 
     // loadAllLayer();    //加载所有可视化图层
 
-    // 大屏初始化旋转缩放动效
-    // setTimeout(() => {
-    //   map.animateTo({
-    //       zoom: mapConfig.Map.zoom + 2,
-    //       center: mapConfig.Map.center,
-    //       pitch: mapConfig.Map.pitch,
-    //       bearing: mapConfig.Map.bearing
-    //   }, {
-    //       duration: 5000
-    //   });
-    // }, 2000);
-
+    // mapApi.mapInitAnimation();
     animation(); //帧循环
   };
 
