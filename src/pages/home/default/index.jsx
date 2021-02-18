@@ -60,12 +60,10 @@ const HomePage = PageBuilder(() => {
   return (
     <main className="page-content">
       <section className="swiper-bar">
-        <span className="bar-title">{"地图卷帘"}</span>
         <Switch
           onChange={onSwiperSwitchChange}
-          checkedChildren="开启"
-          unCheckedChildren="关闭"
-          style={{marginRight: ".4rem"}}
+          checkedChildren="卷帘开启"
+          unCheckedChildren="卷帘关闭"
         />
         {
           sliderShow ?
