@@ -2,7 +2,7 @@
  * @Descripttion: map初始化方法
  * @Author: wxc
  * @Date: 2021-01-29 08:43:19
- * @LastEditTime: 2021-02-20 14:25:22
+ * @LastEditTime: 2021-02-20 23:07:08
  */
 import * as maptalks from "maptalks";
 import * as THREE from "three";
@@ -11,7 +11,8 @@ import mapConfig from "./config/map.config";
 import { baseLayerConfig } from "./config/baseLayer.config";
 // import variableConfig from "./config/variable.config";
 import { mapTool } from "./tools";
-import { mapApi, layerApi } from "./api";
+import { layerApi } from "./api";
+// import { mapApi } from "./api";
 import "maptalks/dist/maptalks.css";
 
 

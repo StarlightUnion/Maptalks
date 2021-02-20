@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
-import { Button, Radio, Switch, Slider } from "antd";
+import { Button, Radio, Switch, Slider, Popover, Form, Input, message } from "antd";
 import PageBuilder from "../../../common/pagerBuilder";
 // import { mapRef } from "../../../common/mapVisual";
 import { InfoBar, mapApi, layerApi, utils } from "../../../common/mapVisual";
@@ -49,6 +49,8 @@ const HomePage = PageBuilder(() => {
     setSliderShow(state);
     layerApi.swipeScaleChange(50, false); // 设置卷帘默认值
     layerApi.swipe(state);
+
+    state && message.warning("启用卷帘将禁用图层切换");
   };
 
   // 卷帘滑动条滑动
@@ -83,9 +85,16 @@ const HomePage = PageBuilder(() => {
             layers.map(item => <Radio.Button value={item} key={item}>{item}</Radio.Button>)
           }
         </Radio.Group>
+        <Popover
+          content={<LocationWindow />}
+          title="请输入经纬度坐标"
+          trigger="click"
+        >
+          <Button type="primary" style={{marginLeft: ".4rem"}}>{ "坐标定位" }</Button>
+        </Popover>
       </section>
       <section className="tool-bar">
-        <Button onClick={mapApi.mapFullExtent}>{ "全幅" }</Button>
+        <Button type="primary" onClick={mapApi.mapFullExtent}>{ "全幅" }</Button>
         <Button onClick={mapApi.mapTo2Dview}>{ "2D" }</Button>
         <Button onClick={mapApi.mapTo3Dview}>{ "3D" }</Button>
         <Button onClick={mapApi.zoomIn}>{ "放大" }</Button>
@@ -98,5 +107,62 @@ const HomePage = PageBuilder(() => {
     </main>
   );
 });
+
+
+const layout = {
+    labelCol: { span: 4 },
+    wrapperCol: { span: 20 },
+  }, tailLayout = {
+    wrapperCol: { offset: 4, span: 20 },
+  };
+
+// 定位弹窗内容
+function LocationWindow() {
+  const [ form ] = Form.useForm();
+
+  // 提交并验证数据之后
+  const onFinish = (values) => {
+    mapApi.mapToCoordinate(values.xValue, values.yValue);
+  };
+
+  // 重置
+  const onReset = () => {
+    form.resetFields();
+  };
+
+  return (
+    <Form
+      {...layout}
+      form={form}
+      className="location-window"
+      onFinish={onFinish}
+    >
+      <Form.Item
+        label="X"
+        name="xValue"
+        rules={[{ required: true, message: "请输入X坐标！" }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        label="Y"
+        name="yValue"
+        rules={[{ required: true, message: "请输入Y坐标" }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item {...tailLayout}>
+        <Button type="primary" htmlType="submit">{ "确定" }</Button>
+        <Button
+          htmlType="button"
+          onClick={onReset}
+          style={{marginLeft: ".4rem"}}
+        >
+          { "重置" }
+        </Button>
+      </Form.Item>
+    </Form>
+  );
+}
 
 export default HomePage;

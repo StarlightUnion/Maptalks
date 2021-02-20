@@ -2,7 +2,7 @@
  * @Descripttion: 地图相关api方法库
  * @Author: wxc
  * @Date: 2021-02-02 14:32:24
- * @LastEditTime: 2021-02-20 14:20:43
+ * @LastEditTime: 2021-02-20 22:16:00
  */
 import { map } from "../init";
 import { utils } from "../tools";
@@ -52,7 +52,7 @@ export default {
     const { x, y } = map.getCenter();
 
     map.animateTo({
-      zoom: zoom - 1,
+      zoom: map.getZoom(),
       center: [x, y],
       pitch: 1,
       bearing: bearing
@@ -70,7 +70,7 @@ export default {
     const { x, y } = map.getCenter();
 
     map.animateTo({
-      zoom: zoom,
+      zoom: map.getZoom(),
       center: [x, y],
       pitch: pitch,
       bearing: bearing
