@@ -2,7 +2,7 @@
  * @Descripttion: map初始化方法
  * @Author: wxc
  * @Date: 2021-01-29 08:43:19
- * @LastEditTime: 2021-02-14 22:12:47
+ * @LastEditTime: 2021-02-20 14:25:22
  */
 import * as maptalks from "maptalks";
 import * as THREE from "three";

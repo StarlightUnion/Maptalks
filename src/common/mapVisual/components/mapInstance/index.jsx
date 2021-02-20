@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from "react";
-import { initMapVisual, initPlugins } from "../init";
-import { utils } from "../tools";
+import { initMapVisual, initPlugins } from "../../init";
+import { utils } from "../../tools";
 import "./index.less";
 
 
 let mapRef = null;
-function MapVisual () {
+function MapVisual() {
   mapRef = useRef();
 
   useEffect(() => {

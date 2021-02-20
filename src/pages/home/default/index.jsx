@@ -3,8 +3,7 @@ import { useSelector } from "react-redux";
 import { Button, Radio, Switch, Slider } from "antd";
 import PageBuilder from "../../../common/pagerBuilder";
 // import { mapRef } from "../../../common/mapVisual";
-import { mapApi, layerApi } from "../../../common/mapVisual/api";
-import { utils } from "../../../common/mapVisual/tools";
+import { InfoBar, mapApi, layerApi, utils } from "../../../common/mapVisual";
 import "./index.less";
 
 
@@ -92,6 +91,9 @@ const HomePage = PageBuilder(() => {
         <Button onClick={mapApi.zoomIn}>{ "放大" }</Button>
         <Button onClick={mapApi.zoomOut}>{ "缩小" }</Button>
         <Button onClick={fullScreen}>{ fstxt }</Button>
+      </section>
+      <section className="info-bar">
+        <InfoBar />
       </section>
     </main>
   );

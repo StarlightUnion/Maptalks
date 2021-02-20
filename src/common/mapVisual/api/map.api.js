@@ -2,7 +2,7 @@
  * @Descripttion: 地图相关api方法库
  * @Author: wxc
  * @Date: 2021-02-02 14:32:24
- * @LastEditTime: 2021-02-13 16:25:08
+ * @LastEditTime: 2021-02-20 14:20:43
  */
 import { map } from "../init";
 import { utils } from "../tools";
@@ -49,9 +49,11 @@ export default {
    * @description: 2D视角
    */
   mapTo2Dview() {
+    const { x, y } = map.getCenter();
+
     map.animateTo({
       zoom: zoom - 1,
-      center: center,
+      center: [x, y],
       pitch: 1,
       bearing: bearing
     }, {
@@ -65,9 +67,11 @@ export default {
    * @description: 3D视角
    */
   mapTo3Dview() {
+    const { x, y } = map.getCenter();
+
     map.animateTo({
       zoom: zoom,
-      center: center,
+      center: [x, y],
       pitch: pitch,
       bearing: bearing
     }, {
