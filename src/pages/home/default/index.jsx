@@ -7,6 +7,11 @@ import { InfoBar, mapApi, layerApi, utils } from "../../../common/mapVisual";
 import "./index.less";
 
 
+// 通用样式
+const buttonSpace = {
+  marginLeft: ".4rem"
+};
+
 const layers = layerApi.allBaseGroup();
 
 const HomePage = PageBuilder(() => {
@@ -85,21 +90,37 @@ const HomePage = PageBuilder(() => {
             layers.map(item => <Radio.Button value={item} key={item}>{item}</Radio.Button>)
           }
         </Radio.Group>
+      </section>
+      <section className="tool-bar">
+        <Button onClick={fullScreen}>{ fstxt }</Button>
         <Popover
           content={<LocationWindow />}
           title="请输入经纬度坐标"
           trigger="click"
         >
-          <Button type="primary" style={{marginLeft: ".4rem"}}>{ "坐标定位" }</Button>
+          <Button type="primary" style={{...buttonSpace}}>{ "坐标定位" }</Button>
         </Popover>
       </section>
       <section className="tool-bar">
         <Button type="primary" onClick={mapApi.mapFullExtent}>{ "全幅" }</Button>
         <Button onClick={mapApi.mapTo2Dview}>{ "2D" }</Button>
         <Button onClick={mapApi.mapTo3Dview}>{ "3D" }</Button>
-        <Button onClick={mapApi.zoomIn}>{ "放大" }</Button>
-        <Button onClick={mapApi.zoomOut}>{ "缩小" }</Button>
-        <Button onClick={fullScreen}>{ fstxt }</Button>
+        <Button
+          type="primary"
+          shape="circle"
+          onClick={mapApi.zoomIn}
+          style={{fontWeight: "bold"}}
+        >
+          { "+" }
+        </Button>
+        <Button
+          type="primary"
+          shape="circle"
+          onClick={mapApi.zoomOut}
+          style={{fontWeight: "bold"}}
+        >
+          { "-" }
+        </Button>
       </section>
       <section className="info-bar">
         <InfoBar />
@@ -110,15 +131,30 @@ const HomePage = PageBuilder(() => {
 
 
 const layout = {
-    labelCol: { span: 4 },
-    wrapperCol: { span: 20 },
-  }, tailLayout = {
-    wrapperCol: { offset: 4, span: 20 },
+    labelCol: { span: 6 },
+    wrapperCol: { span: 18 }
+  },
+  tailLayout = {
+    wrapperCol: { offset: 6, span: 18 }
   };
 
 // 定位弹窗内容
 function LocationWindow() {
   const [ form ] = Form.useForm();
+
+  /**
+   * @name: coordinateValidate
+   * @description: 经纬度坐标验证
+   * @param {number} value
+   * @param {boolean} isXValue 是否经度坐标
+   * @return {*}
+   */
+  const coordinateValidate = (value, isXValue) => {
+    const xReg = /^(\-|\+)?(((\d|[1-9]\d|1[0-7]\d|0{1,3})\.\d{0,6})|(\d|[1-9]\d|1[0-7]\d|0{1,3})|180\.0{0,6}|180)$/,
+      yReg = /^(\-|\+)?([0-8]?\d{1}\.\d{0,6}|90\.0{0,6}|[0-8]?\d{1}|90)$/;
+
+    return isXValue ? xReg.test(value) : yReg.test(value);
+  };
 
   // 提交并验证数据之后
   const onFinish = (values) => {
@@ -138,25 +174,53 @@ function LocationWindow() {
       onFinish={onFinish}
     >
       <Form.Item
-        label="X"
+        label="经度"
         name="xValue"
-        rules={[{ required: true, message: "请输入X坐标！" }]}
+        rules={[
+          {
+            required: true,
+            message: "请输入经度坐标！"
+          },
+          ({ getFieldValue }) => ({
+            validator(_, value) {
+              if (!value || coordinateValidate(getFieldValue("xValue"), true)) {
+                return Promise.resolve();
+              }
+
+              return Promise.reject("经度坐标不符合规范！");
+            },
+          }),
+        ]}
       >
-        <Input />
+        <Input placeholder={"经度坐标"} />
       </Form.Item>
       <Form.Item
-        label="Y"
+        label="纬度"
         name="yValue"
-        rules={[{ required: true, message: "请输入Y坐标" }]}
+        rules={[
+          {
+            required: true,
+            message: "请输入纬度坐标！"
+          },
+          ({ getFieldValue }) => ({
+            validator(_, value) {
+              if (!value || coordinateValidate(getFieldValue("yValue"), false)) {
+                return Promise.resolve();
+              }
+
+              return Promise.reject("纬度坐标不符合规范！");
+            },
+          }),
+        ]}
       >
-        <Input />
+        <Input placeholder={"纬度坐标"} />
       </Form.Item>
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">{ "确定" }</Button>
         <Button
           htmlType="button"
           onClick={onReset}
-          style={{marginLeft: ".4rem"}}
+          style={{...buttonSpace}}
         >
           { "重置" }
         </Button>
