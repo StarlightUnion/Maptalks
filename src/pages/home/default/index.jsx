@@ -142,20 +142,6 @@ const layout = {
 function LocationWindow() {
   const [ form ] = Form.useForm();
 
-  /**
-   * @name: coordinateValidate
-   * @description: 经纬度坐标验证
-   * @param {number} value
-   * @param {boolean} isXValue 是否经度坐标
-   * @return {*}
-   */
-  const coordinateValidate = (value, isXValue) => {
-    const xReg = /^(\-|\+)?(((\d|[1-9]\d|1[0-7]\d|0{1,3})\.\d{0,6})|(\d|[1-9]\d|1[0-7]\d|0{1,3})|180\.0{0,6}|180)$/,
-      yReg = /^(\-|\+)?([0-8]?\d{1}\.\d{0,6}|90\.0{0,6}|[0-8]?\d{1}|90)$/;
-
-    return isXValue ? xReg.test(value) : yReg.test(value);
-  };
-
   // 提交并验证数据之后
   const onFinish = (values) => {
     mapApi.mapToCoordinate(values.xValue, values.yValue);
@@ -183,13 +169,13 @@ function LocationWindow() {
           },
           ({ getFieldValue }) => ({
             validator(_, value) {
-              if (!value || coordinateValidate(getFieldValue("xValue"), true)) {
+              if (!value || utils.coordinateValidate(getFieldValue("xValue"), true)) {
                 return Promise.resolve();
               }
 
               return Promise.reject("经度坐标不符合规范！");
-            },
-          }),
+            }
+          })
         ]}
       >
         <Input placeholder={"经度坐标"} />
@@ -204,13 +190,13 @@ function LocationWindow() {
           },
           ({ getFieldValue }) => ({
             validator(_, value) {
-              if (!value || coordinateValidate(getFieldValue("yValue"), false)) {
+              if (!value || utils.coordinateValidate(getFieldValue("yValue"), false)) {
                 return Promise.resolve();
               }
 
               return Promise.reject("纬度坐标不符合规范！");
-            },
-          }),
+            }
+          })
         ]}
       >
         <Input placeholder={"纬度坐标"} />

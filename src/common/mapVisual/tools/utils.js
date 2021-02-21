@@ -2,7 +2,7 @@
  * @Descripttion: 工具方法库
  * @Author: wxc
  * @Date: 2021-02-02 14:38:43
- * @LastEditTime: 2021-02-20 23:10:59
+ * @LastEditTime: 2021-02-21 15:09:43
  */
 import { map } from "../init";
 import { message } from "antd";
@@ -99,5 +99,19 @@ export default {
    */
   devicePixelRatio() {
     return map.getDevicePixelRatio();
+  },
+
+  /**
+   * @name: coordinateValidate
+   * @description: 经纬度坐标验证
+   * @param {number} value
+   * @param {boolean} isXValue 是否经度坐标
+   * @return {boolean}
+   */
+  coordinateValidate(value, isXValue) {
+    const xReg = /^(\-|\+)?(((\d|[1-9]\d|1[0-7]\d|0{1,3})\.\d{0,6})|(\d|[1-9]\d|1[0-7]\d|0{1,3})|180\.0{0,6}|180)$/,
+      yReg = /^(\-|\+)?([0-8]?\d{1}\.\d{0,6}|90\.0{0,6}|[0-8]?\d{1}|90)$/;
+
+    return isXValue ? xReg.test(value) : yReg.test(value);
   }
 };
