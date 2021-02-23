@@ -4,6 +4,7 @@ export
 enum ACTION_TYPE {
   CONFIG,
   MAP,
+  LOADING,
   CURRENTGROUPSHOW
 }
 

@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 import { CookiesProvider } from "react-cookie";
 import { ConfigProvider, message, Skeleton } from "antd";
 import store from "./store";
-import { ACTION_TYPE } from "./def";
 import zh_CN from "antd/lib/locale-provider/zh_CN";
 import moment from "moment";
 import "moment/locale/zh-cn";
@@ -12,6 +11,7 @@ moment.locale("zh-cn");
 import "./main.less";
 
 import Routes from "./routes";
+import { ProjectUtils } from "./common/tools";
 
 
 // 全局上下文
@@ -44,9 +44,7 @@ class App extends React.Component {
       titlePath: "title.png"
     }];
 
-    // 全局配置
-    store.dispatch({
-      type: ACTION_TYPE.CONFIG,
+    ProjectUtils.dispatchState("CONFIG", {// 全局配置
       config: {
         routes: this.routes,// 路由参数
         projectName: "maptalks",// 项目名称

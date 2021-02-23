@@ -24,6 +24,7 @@ const PageBuilder = (Childs) => {
     componentDidMount() {
       const { route, config } = this.props;
       document.title = `${route.label} | ${config.projectName}`;
+      document.getElementById("loading").style.display = "none";
     }
 
     render() {

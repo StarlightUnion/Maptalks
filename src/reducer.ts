@@ -8,6 +8,9 @@ function reducer(state: any, action: ACTION) {
     case ACTION_TYPE.MAP:
       return { ...state, map: action["map"] };
 
+    case ACTION_TYPE.LOADING:
+      return { ...state, loading: action["loading"] };
+
     case ACTION_TYPE.CURRENTGROUPSHOW:
       return { ...state, currentGroupShow: action["currentGroupShow"] };
 

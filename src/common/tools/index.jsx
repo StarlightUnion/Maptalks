@@ -1,2 +1,4 @@
 import AsyncImport from "./asyncImport";
-export { AsyncImport };
+import ProjectUtils from "./utils";
+
+export { AsyncImport, ProjectUtils };

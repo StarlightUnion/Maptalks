@@ -1,8 +1,8 @@
 /*
- * @Descripttion: 工具方法库
+ * @Descripttion: mapVisual工具方法库
  * @Author: wxc
  * @Date: 2021-02-02 14:38:43
- * @LastEditTime: 2021-02-21 15:09:43
+ * @LastEditTime: 2021-02-23 14:26:18
  */
 import { map } from "../init";
 import { message } from "antd";
